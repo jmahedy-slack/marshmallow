@@ -151,6 +151,37 @@ api.post("/analyze", async (req, res) => {
   }
 });
 
+const {
+  FEATURE: vehicleConsistencyFeature,
+  DEMO_SCENARIOS,
+  runVehicleConsistencyCheck,
+} = require("./workbench/vehicleConsistencyWorkbench");
+
+api.get("/v1/features/vehicle-consistency-workbench", (_req, res) => {
+  res.json({
+    ok: true,
+    feature: vehicleConsistencyFeature,
+    repository: "https://github.com/jmahedy-slack/marshmallow",
+    documentation: "/docs/FEATURE-vehicle-consistency-workbench.md",
+  });
+});
+
+api.get("/v1/workbench/demo-scenarios", (_req, res) => {
+  res.json({
+    ok: true,
+    scenarios: DEMO_SCENARIOS.map(({ id, title, claimId }) => ({ id, title, claimId })),
+  });
+});
+
+api.post("/v1/workbench/vehicle-consistency", async (req, res) => {
+  try {
+    const result = await runVehicleConsistencyCheck(req.body || {});
+    res.json({ ok: true, result });
+  } catch (err) {
+    res.status(err.status || 500).json({ ok: false, error: err.message });
+  }
+});
+
 (async () => {
   if (!config.slackBotToken || !config.slackAppToken) {
     console.warn("Slack tokens not set — HTTP API only on port", PORT);
@@ -180,7 +211,7 @@ api.post("/analyze", async (req, res) => {
   api.listen(PORT, () => {
     console.log(`Marshmallow Claims Fraud Agent running (Socket Mode: ${SOCKET_MODE})`);
     console.log(
-      `HTTP API on port ${PORT} — GET /health, POST /analyze | SF org ${config.salesforceOrg} (${config.salesforceOrgId})`
+      `HTTP API on port ${PORT} — GET /health, POST /analyze, POST /v1/workbench/vehicle-consistency | SF org ${config.salesforceOrg} (${config.salesforceOrgId})`
     );
   });
 })();

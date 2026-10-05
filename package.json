@@ -15,6 +15,7 @@
     "postinstall": "node scripts/seed_data.js",
     "heroku-postbuild": "bash scripts/heroku-install-sf-cli.sh",
     "analyze": "node -e \"const {runAnalysis}=require('./src/engine/analyze');console.log(JSON.stringify(runAnalysis(process.argv[1]||'check claim CLM-2026-004781'),null,2))\"",
+    "test:workbench": "node scripts/test_vehicle_consistency_workbench.js",
     "tunnel": "ngrok http 3002"
   },
   "engines": {
