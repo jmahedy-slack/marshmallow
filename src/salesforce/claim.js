@@ -1,6 +1,10 @@
 const config = require("../config");
 const { listPatterns } = require("../engine/store");
-const { HOLD_ACTION_RE, RELEASE_SALESFORCE_STATUS } = require("../blocks/claimHoldStatusCard");
+const {
+  HOLD_ACTION_RE,
+  HOLD_SALESFORCE_STATUS,
+  RELEASE_SALESFORCE_STATUS,
+} = require("../blocks/claimHoldStatusCard");
 const {
   parseInsuredVehicleFromNotes,
   enrichClaimVehicle,
@@ -12,6 +16,7 @@ const {
   accountUrl,
   escapeSoqlString,
   escapeCliValue,
+  patchSObjectRecord,
 } = require("./client");
 
 const CLAIM_FIELDS = [
@@ -179,22 +184,10 @@ async function updateClaimProfilingResult({
     const existing = current.records?.[0]?.Internal_Notes__c || "";
     const combined = existing ? `${existing}\n${noteLine}` : noteLine;
 
-    const values = [
-      `Fraud_Flag__c=${fraudFlag}`,
-      `Internal_Notes__c='${escapeCliValue(combined)}'`,
-    ];
-
-    await sfJson([
-      "data",
-      "update",
-      "record",
-      "--sobject",
-      config.salesforceClaimObject,
-      "--record-id",
-      salesforceId,
-      "--values",
-      values.join(" "),
-    ]);
+    await patchSObjectRecord(config.salesforceClaimObject, salesforceId, {
+      Fraud_Flag__c: fraudFlag,
+      Internal_Notes__c: combined,
+    });
     return { updated: true, fraudFlag, salesforceId };
   } catch (err) {
     return { updated: false, error: err.message };
@@ -227,27 +220,17 @@ async function putClaimOnHold({ salesforceId, claimId, ruleId, initiatedBy }) {
     const existing = row.Internal_Notes__c || "";
     const combined = existing ? `${existing}\n${noteLine}` : noteLine;
 
-    await sfJson([
-      "data",
-      "update",
-      "record",
-      "--sobject",
-      config.salesforceClaimObject,
-      "--record-id",
-      salesforceId,
-      "--values",
-      [
-        "Claim_Status__c=Investigating",
-        "Fraud_Flag__c=true",
-        `Internal_Notes__c='${escapeCliValue(combined)}'`,
-      ].join(" "),
-    ]);
+    await patchSObjectRecord(config.salesforceClaimObject, salesforceId, {
+      Claim_Status__c: HOLD_SALESFORCE_STATUS,
+      Fraud_Flag__c: true,
+      Internal_Notes__c: combined,
+    });
 
     return {
       updated: true,
       claimId,
       salesforceId,
-      status: "Investigating",
+      status: HOLD_SALESFORCE_STATUS,
       displayStatus: "On hold",
     };
   } catch (err) {
@@ -276,21 +259,11 @@ async function releaseClaimFromHold({ salesforceId, claimId, ruleId, initiatedBy
     const existing = row.Internal_Notes__c || "";
     const combined = existing ? `${existing}\n${noteLine}` : noteLine;
 
-    await sfJson([
-      "data",
-      "update",
-      "record",
-      "--sobject",
-      config.salesforceClaimObject,
-      "--record-id",
-      salesforceId,
-      "--values",
-      [
-        `Claim_Status__c=${RELEASE_SALESFORCE_STATUS}`,
-        "Fraud_Flag__c=false",
-        `Internal_Notes__c='${escapeCliValue(combined)}'`,
-      ].join(" "),
-    ]);
+    await patchSObjectRecord(config.salesforceClaimObject, salesforceId, {
+      Claim_Status__c: RELEASE_SALESFORCE_STATUS,
+      Fraud_Flag__c: false,
+      Internal_Notes__c: combined,
+    });
 
     return {
       updated: true,
@@ -325,17 +298,9 @@ async function linkSlackChannelToClaim({ salesforceId, channelName, channelId, t
     }
     const combined = existing ? `${existing}\n${noteLine}` : noteLine;
 
-    await sfJson([
-      "data",
-      "update",
-      "record",
-      "--sobject",
-      config.salesforceClaimObject,
-      "--record-id",
-      salesforceId,
-      "--values",
-      `Internal_Notes__c='${escapeCliValue(combined)}'`,
-    ]);
+    await patchSObjectRecord(config.salesforceClaimObject, salesforceId, {
+      Internal_Notes__c: combined,
+    });
     return { updated: true, salesforceId, channelId, noteLine };
   } catch (err) {
     return { updated: false, error: err.message };

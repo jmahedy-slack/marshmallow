@@ -95,6 +95,32 @@ async function getOrgAuth() {
   return cachedOrgAuth;
 }
 
+async function patchSObjectRecord(objectApiName, recordId, fields) {
+  const apiName = String(objectApiName || "").trim();
+  const id = String(recordId || "").trim();
+  if (!apiName || !id) {
+    throw new Error("Salesforce object API name and record id are required");
+  }
+
+  const { instanceUrl, accessToken } = await getOrgAuth();
+  const url = `${instanceUrl}/services/data/v59.0/sobjects/${apiName}/${id}`;
+  const res = await fetch(url, {
+    method: "PATCH",
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(fields),
+  });
+
+  if (!res.ok) {
+    const body = await res.text();
+    throw new Error(`Salesforce update failed (${res.status}): ${body.slice(0, 800)}`);
+  }
+
+  return { id };
+}
+
 async function downloadContentVersion(versionId, options = {}) {
   const maxBytes = options.maxBytes || 8 * 1024 * 1024;
   const id = String(versionId || "").trim();
@@ -134,4 +160,5 @@ module.exports = {
   escapeSoqlString,
   escapeCliValue,
   resolveSfCli,
+  patchSObjectRecord,
 };
