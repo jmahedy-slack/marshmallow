@@ -20,4 +20,9 @@ if [[ ! -x "$SF_BIN" ]]; then
   exit 1
 fi
 
-echo "heroku-install-sf-cli: installed $(\"$SF_BIN\" --version | head -1)"
+if [[ -x "$SF_BIN" ]]; then
+  echo "heroku-install-sf-cli: installed $("$SF_BIN" --version 2>/dev/null | head -1)"
+else
+  echo "heroku-install-sf-cli: warning — binary missing at ${SF_BIN}" >&2
+  exit 1
+fi

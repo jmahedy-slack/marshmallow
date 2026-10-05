@@ -24,8 +24,11 @@ module.exports = {
   publicBaseUrl: (() => {
     const explicit = env("CLAIMS_FRAUD_PUBLIC_BASE_URL", "PUBLIC_BASE_URL");
     if (explicit) return explicit;
-    if (process.env.HEROKU_APP_NAME) {
-      return `https://${process.env.HEROKU_APP_NAME}.herokuapp.com`;
+    const herokuDomain =
+      process.env.HEROKU_APP_DEFAULT_DOMAIN_NAME ||
+      (process.env.HEROKU_APP_NAME ? `${process.env.HEROKU_APP_NAME}.herokuapp.com` : null);
+    if (herokuDomain) {
+      return `https://${herokuDomain.replace(/^https?:\/\//, "")}`;
     }
     return undefined;
   })(),
