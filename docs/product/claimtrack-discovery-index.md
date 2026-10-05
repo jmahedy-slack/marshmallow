@@ -28,9 +28,13 @@
 | `docs/api/claimtrack-progress.openapi.yaml` | Draft progress API |
 | `src/salesforce/claim.js` | Existing Claim__c field usage (internal agent) |
 
-## Confluence (space SD)
+## Confluence (space SD) — Google Drive substitute
 
 Search title: **ClaimTrack** or **Business feedback — claims visibility**
+
+If pages are missing, run (valid Atlassian token required):
+
+`node scripts/seed_claimtrack_confluence.js`
 
 ## Engineering standards
 
