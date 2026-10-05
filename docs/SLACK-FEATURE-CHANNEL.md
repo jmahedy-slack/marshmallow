@@ -1,6 +1,23 @@
 # Slack feature channel setup
 
-Pin these links in your **#feature-vehicle-consistency** (or similar) channel:
+Recommended channel: **`#feature-vehicle-consistency`**
+
+## GitHub app notifications
+
+After `/github subscribe jmahedy-slack/marshmallow`, enable the feeds you want:
+
+```
+/github subscribe jmahedy-slack/marshmallow issues pulls commits deployments releases
+/github subscribe jmahedy-slack/marshmallow comments reviews
+```
+
+Check what is enabled:
+
+```
+/github subscribe list
+```
+
+Pin these links in the feature channel:
 
 | Resource | URL |
 |----------|-----|
