@@ -1,0 +1,14 @@
+---
+description: Marshmallow claims-fraud-agent must work before porting to GoCardless
+globs: src/**/*
+alwaysApply: false
+---
+
+# Focus: Marshmallow first
+
+Finish and verify **claims-fraud-agent** Salesforce channel creation in Slack before any GoCardless port.
+
+Do not implement GoCardless changes until this app works end-to-end:
+- Review claim → follow-up message with **Create Salesforce channel** button (plain `chat.postMessage`, not streamed)
+- Button click or `Create channel for CLM-…` or `/claims-channel CLM-…`
+- `admin.conversations.createForObjects` + `CLAIMS_FRAUD_SLACK_USER_TOKEN`

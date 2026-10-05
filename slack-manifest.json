@@ -1,0 +1,111 @@
+{
+  "display_information": {
+    "name": "Marshmallow Claims Fraud",
+    "description": "AI agent for insurance claims fraud profiling — channel context, Salesforce Claim__c, and suspect scoring.",
+    "background_color": "#ff0082",
+    "long_description": "The Marshmallow Claims Fraud Agent helps claims and SIU teams review insurance claims for suspicious patterns including delayed FNOL, photo metadata anomalies, garage clustering, bank detail changes, and channel corroboration gaps.\n\nFor each claim review, the agent looks up the *Salesforce channel* linked to the Claim__c record, reads Slack messages and files, reconciles with Salesforce, and returns a suspect score with next steps. If no channel exists, use **Create Salesforce channel** to open a record-linked investigation channel (canvas brief, pinned context, bot auto-added).\n\nOpen the agent from the Slack top bar (Agents & AI Apps) for streaming analysis, or use slash commands in channels."
+  },
+  "features": {
+    "app_home": {
+      "home_tab_enabled": true,
+      "messages_tab_enabled": true,
+      "messages_tab_read_only_enabled": false
+    },
+    "bot_user": {
+      "display_name": "Claims Fraud Agent",
+      "always_online": true
+    },
+    "assistant_view": {
+      "assistant_description": "Profiles insurance claims against internal fraud rules. Auto-matches the Salesforce channel linked to each Claim__c, reviews claim references (CLM-...), and creates record-linked investigation channels when missing.",
+      "suggested_prompts": [
+        {
+          "title": "Review CLM-2026-004781",
+          "message": "Review claim CLM-2026-004781 for suspected fraud"
+        },
+        {
+          "title": "Review SF fraud flag CLM-0010",
+          "message": "Review claim CLM-0010 for suspected fraud"
+        },
+        {
+          "title": "List profiler rules",
+          "message": "List all claims fraud profiling rules"
+        },
+        {
+          "title": "Profile with channel context",
+          "message": "Review claim CLM-2026-004781 using the selected claims channel context"
+        }
+      ]
+    },
+    "slash_commands": [
+      {
+        "command": "/claims-review",
+        "description": "Profile a claim reference for suspected fraud",
+        "usage_hint": "CLM-2026-004781",
+        "should_escape": false
+      },
+      {
+        "command": "/claims-rules",
+        "description": "List all active claims fraud profiling rules",
+        "usage_hint": "",
+        "should_escape": false
+      },
+      {
+        "command": "/claims-channel",
+        "description": "Create a Salesforce-linked Slack channel for a claim",
+        "usage_hint": "CLM-0018",
+        "should_escape": false
+      }
+    ]
+  },
+  "oauth_config": {
+    "scopes": {
+      "bot": [
+        "app_mentions:read",
+        "assistant:write",
+        "canvases:write",
+        "channels:history",
+        "channels:join",
+        "channels:manage",
+        "channels:read",
+        "chat:write",
+        "commands",
+        "files:read",
+        "files:write",
+        "groups:history",
+        "groups:read",
+        "groups:write",
+        "im:history",
+        "im:read",
+        "im:write",
+        "pins:write",
+        "reactions:write",
+        "users:read"
+      ],
+      "user": [
+        "admin.conversations:manage_objects",
+        "channels:read",
+        "groups:read"
+      ]
+    }
+  },
+  "settings": {
+    "event_subscriptions": {
+      "bot_events": [
+        "app_home_opened",
+        "app_mention",
+        "assistant_thread_context_changed",
+        "assistant_thread_started",
+        "message.channels",
+        "message.groups",
+        "message.im"
+      ]
+    },
+    "interactivity": {
+      "is_enabled": true
+    },
+    "org_deploy_enabled": false,
+    "socket_mode_enabled": true,
+    "token_rotation_enabled": false,
+    "is_hosted": false
+  }
+}

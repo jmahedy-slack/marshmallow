@@ -1,0 +1,91 @@
+{
+  "channels": [
+    {
+      "id": "C_CLAIMS_MOTOR_URGENT",
+      "name": "claims-motor-urgent",
+      "label": "Motor claims — urgent",
+      "description": "High-priority motor FNOL and SIU escalations"
+    },
+    {
+      "id": "C_CLAIMS_FNOL_DIGITAL",
+      "name": "claims-fnol-digital",
+      "label": "FNOL digital channel",
+      "description": "App and web first-notification threads"
+    },
+    {
+      "id": "C_CLAIMS_BROKER",
+      "name": "claims-broker-referrals",
+      "label": "Broker referrals",
+      "description": "Broker-submitted claim handoffs"
+    }
+  ],
+  "seeds": {
+    "C_CLAIMS_MOTOR_URGENT": {
+      "messages": [
+        {
+          "user": "Claims Handler — Amy",
+          "text": "Heads up on *CLM-2026-004781* — customer pushing for fast payout before holiday. Photos look heavy for a barrier hit.",
+          "ts": "2026-06-14T12:00:00Z"
+        },
+        {
+          "user": "SIU Analyst — Raj",
+          "text": "Flagging CLM-2026-004781 for *suspect review*: image EXIF shows damage pics taken *before* date of loss. Also bank details changed yesterday.",
+          "ts": "2026-06-14T12:45:00Z"
+        },
+        {
+          "user": "Claims Handler — Amy",
+          "text": "Garage estimate from FastTrack Prestige came back in 3 hours — same garage as other recent flags.",
+          "ts": "2026-06-14T13:10:00Z"
+        },
+        {
+          "user": "SIU Analyst — Raj",
+          "text": "Device fingerprint on FNOL matches two unrelated apps under investigation. Recommend fraud hold + engineer inspection.",
+          "ts": "2026-06-14T14:00:00Z"
+        }
+      ],
+      "files": [
+        {
+          "name": "CLM-2026-004781-damage-front.jpg",
+          "mimetype": "image/jpeg",
+          "note": "Metadata: created 2026-06-11 (1 day before reported loss)"
+        },
+        {
+          "name": "FastTrack_estimate_CLM-004781.pdf",
+          "mimetype": "application/pdf",
+          "note": "Repair estimate £18,450"
+        }
+      ]
+    },
+    "C_CLAIMS_FNOL_DIGITAL": {
+      "messages": [
+        {
+          "user": "Digital FNOL Bot",
+          "text": "New motor FNOL *CLM-2026-004781* submitted via app. Customer cited damaged phone as reason for 48h reporting delay.",
+          "ts": "2026-06-14T10:35:00Z"
+        },
+        {
+          "user": "Digital Ops — Lee",
+          "text": "Customer contacted support 4 times in 24h asking for expedited settlement — overseas trip mentioned.",
+          "ts": "2026-06-14T15:20:00Z"
+        }
+      ],
+      "files": [
+        {
+          "name": "fnol-screenshot-004781.png",
+          "mimetype": "image/png",
+          "note": "App submission capture"
+        }
+      ]
+    },
+    "C_CLAIMS_BROKER": {
+      "messages": [
+        {
+          "user": "Broker Desk — Nina",
+          "text": "Routine broker referral — no action on CLM-2026-004781 (direct customer policy).",
+          "ts": "2026-06-14T09:00:00Z"
+        }
+      ],
+      "files": []
+    }
+  }
+}

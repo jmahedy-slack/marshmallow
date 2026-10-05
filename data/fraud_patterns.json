@@ -1,0 +1,162 @@
+[
+  {
+    "id": "TIM-001",
+    "name": "Delayed FNOL",
+    "category": "timing",
+    "source": "claims_profiler",
+    "severity": "medium",
+    "weight": 15,
+    "description": "First notification of loss reported more than 24 hours after date of loss without documented impediment",
+    "recommendedAction": "Request timeline statement and corroborating evidence for reporting delay"
+  },
+  {
+    "id": "TIM-002",
+    "name": "Photo metadata predates loss",
+    "category": "timing",
+    "source": "claims_profiler",
+    "severity": "critical",
+    "weight": 40,
+    "description": "Uploaded damage photographs created before the reported date of loss",
+    "recommendedAction": "Suspend settlement; request original device metadata and forensic image review"
+  },
+  {
+    "id": "POL-001",
+    "name": "Recent cover upgrade",
+    "category": "policy",
+    "source": "claims_profiler",
+    "severity": "high",
+    "weight": 30,
+    "description": "Material cover enhancement (protected NCB, reduced excess) within 30 days before loss",
+    "recommendedAction": "Review policy change rationale and underwriting notes before indemnity decision"
+  },
+  {
+    "id": "DOC-001",
+    "name": "Missing police report",
+    "category": "documentation",
+    "source": "claims_profiler",
+    "severity": "medium",
+    "weight": 20,
+    "description": "Motor accident with third party involvement but no police report filed",
+    "recommendedAction": "Request police reference or statutory declaration explaining non-reporting"
+  },
+  {
+    "id": "DOC-002",
+    "name": "No independent witnesses",
+    "category": "documentation",
+    "source": "claims_profiler",
+    "severity": "low",
+    "weight": 12,
+    "description": "High-value motor claim with no witnesses and sole policyholder account",
+    "recommendedAction": "Seek CCTV, dashcam, or third-party trace for corroboration"
+  },
+  {
+    "id": "EST-001",
+    "name": "Rapid repair estimate",
+    "category": "repair",
+    "source": "claims_profiler",
+    "severity": "medium",
+    "weight": 18,
+    "description": "Repair estimate supplied within 4 hours of claim notification",
+    "recommendedAction": "Validate garage relationship and independent engineer assessment"
+  },
+  {
+    "id": "GAR-001",
+    "name": "Garage frequency cluster",
+    "category": "network",
+    "source": "claims_profiler",
+    "severity": "high",
+    "weight": 25,
+    "description": "Repair garage appears on multiple claims in a 60-day window",
+    "recommendedAction": "Flag garage for network fraud review and cross-claim linkage analysis"
+  },
+  {
+    "id": "FIN-001",
+    "name": "Settlement account change",
+    "category": "financial",
+    "source": "claims_profiler",
+    "severity": "high",
+    "weight": 35,
+    "description": "Bank account for settlement updated within 48 hours of claim submission",
+    "recommendedAction": "Verify account ownership via payee checks before any payment"
+  },
+  {
+    "id": "DEV-001",
+    "name": "Device linked to investigations",
+    "category": "identity",
+    "source": "claims_profiler",
+    "severity": "high",
+    "weight": 30,
+    "description": "Submission device matches device used on unrelated policy applications under investigation",
+    "recommendedAction": "Link to SIU identity graph and check for synthetic identity indicators"
+  },
+  {
+    "id": "DEM-001",
+    "name": "Pressure for expedited settlement",
+    "category": "behaviour",
+    "source": "claims_profiler",
+    "severity": "low",
+    "weight": 12,
+    "description": "Expedited settlement requested with multiple service contacts in first 24 hours",
+    "recommendedAction": "Apply standard fraud hold; document customer pressure pattern"
+  },
+  {
+    "id": "VAL-001",
+    "name": "High indemnity ratio",
+    "category": "valuation",
+    "source": "claims_profiler",
+    "severity": "medium",
+    "weight": 22,
+    "description": "Claim value exceeds 50% of estimated vehicle market value",
+    "recommendedAction": "Order independent vehicle inspection and market valuation"
+  },
+  {
+    "id": "QUO-001",
+    "name": "Quote shopping pattern",
+    "category": "policy",
+    "source": "claims_profiler",
+    "severity": "low",
+    "weight": 10,
+    "description": "Multiple quote attempts on same customer email before binding",
+    "recommendedAction": "Review quote history for premium manipulation or fronting signals"
+  },
+  {
+    "id": "SF-001",
+    "name": "Salesforce fraud flag",
+    "category": "salesforce",
+    "source": "claims_profiler",
+    "severity": "high",
+    "weight": 20,
+    "description": "Claim already flagged or contains fraud escalation notes on Claim__c",
+    "recommendedAction": "Align profiler outcome with existing SIU notes on the Salesforce record"
+  },
+  {
+    "id": "CHN-001",
+    "name": "Channel corroboration gap",
+    "category": "channel",
+    "source": "channel_intel",
+    "severity": "medium",
+    "weight": 18,
+    "description": "Slack claims channel discussion contradicts or omits facts on the Salesforce claim record",
+    "recommendedAction": "Reconcile channel transcript with FNOL and interview handler"
+  },
+  {
+    "id": "CHN-002",
+    "name": "Channel fraud escalation mention",
+    "category": "channel",
+    "source": "channel_intel",
+    "severity": "high",
+    "weight": 28,
+    "description": "Claims channel contains SIU, fraud, or suspect language linked to this claim reference",
+    "recommendedAction": "Pull full channel export and align with profiling score before settlement"
+  },
+  {
+    "id": "VEH-001",
+    "name": "Vehicle identity mismatch",
+    "category": "documentation",
+    "source": "vision_intel",
+    "severity": "critical",
+    "weight": 45,
+    "description": "Damage photo vehicle make, model, colour, or registration inconsistent with insured vehicle on Claim__c",
+    "recommendedAction": "Hold settlement; verify VRM and vehicle identity against policy schedule and DVLA"
+  }
+]

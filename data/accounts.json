@@ -1,0 +1,30 @@
+{
+  "accounts": [
+    {
+      "id": "acc_michael_turner",
+      "name": "Michael Turner",
+      "email": "michael.turner@example.com",
+      "policyCount": 1,
+      "customerSince": "2026-02-14"
+    },
+    {
+      "id": "acc_sarah_chen",
+      "name": "Sarah Chen",
+      "email": "sarah.chen@example.com",
+      "policyCount": 2,
+      "customerSince": "2024-11-01"
+    },
+    {
+      "id": "acc_james_okonkwo",
+      "name": "James Okonkwo",
+      "email": "j.okonkwo@example.com",
+      "policyCount": 1,
+      "customerSince": "2025-08-20"
+    }
+  ],
+  "garageStats": {
+    "FastTrack Prestige Repairs Ltd": { "claimsLast60Days": 7 },
+    "North London Motors Ltd": { "claimsLast60Days": 2 },
+    "City Auto Body": { "claimsLast60Days": 1 }
+  }
+}

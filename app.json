@@ -1,0 +1,23 @@
+{
+  "name": "Marshmallow Claims Fraud Agent",
+  "description": "Slack claims fraud profiling agent (Socket Mode) with OpenAI vision on Heroku",
+  "repository": "https://github.com/jmahedy-slack/marshmallow-claims-fraud-agent",
+  "keywords": ["slack", "salesforce", "insurance", "openai"],
+  "env": {
+    "CLAIMS_FRAUD_SOCKET_MODE": { "value": "true", "required": true },
+    "CLAIMS_FRAUD_VISION_PROVIDER": { "value": "openai", "required": true },
+    "CLAIMS_FRAUD_VISION_MODEL": { "value": "gpt-4o-mini", "required": false },
+    "CLAIMS_FRAUD_OLLAMA_ENABLED": { "value": "false", "required": false },
+    "CLAIMS_FRAUD_SLACK_BOT_TOKEN": { "required": true },
+    "CLAIMS_FRAUD_SLACK_APP_TOKEN": { "required": true },
+    "CLAIMS_FRAUD_SLACK_SIGNING_SECRET": { "required": true },
+    "CLAIMS_FRAUD_VISION_API_KEY": { "required": true },
+    "SFDX_AUTH_URL": { "description": "Salesforce auth URL (sf org display --verbose --json)", "required": false }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "basic"
+    }
+  }
+}

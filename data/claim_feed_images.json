@@ -1,0 +1,78 @@
+{
+  "CLM-0019": [
+    {
+      "title": "Front damage",
+      "subtitle": "Third-party RTA",
+      "body": "Front bumper and grille damage — Range Rover Evoque, yellow",
+      "imagePath": "front-damage.jpg",
+      "source": "local"
+    },
+    {
+      "title": "Side impact",
+      "subtitle": "Driver side",
+      "body": "Side panel denting and scrape along rear door",
+      "imagePath": "side-impact.png",
+      "source": "local"
+    },
+    {
+      "title": "Rear panel",
+      "subtitle": "Rear quarter",
+      "body": "Rear quarter panel damage from collision",
+      "imagePath": "rear-panel.png",
+      "source": "local"
+    }
+  ],
+  "CLM-0025": [
+    {
+      "title": "Front damage",
+      "subtitle": "Third-party RTA",
+      "body": "Front bumper and grille damage — Range Rover Evoque, grey",
+      "imagePath": "front-damage.jpg",
+      "source": "local"
+    },
+    {
+      "title": "Side impact",
+      "subtitle": "Driver side",
+      "body": "Side panel denting and scrape along rear door",
+      "imagePath": "side-impact.png",
+      "source": "local"
+    },
+    {
+      "title": "Rear panel",
+      "subtitle": "Rear quarter",
+      "body": "Rear quarter panel damage from collision",
+      "imagePath": "rear-panel.png",
+      "source": "local"
+    }
+  ],
+  "Claim": [
+    {
+      "title": "Claim damage 1",
+      "subtitle": "Front impact",
+      "body": "Front-end collision damage",
+      "imagePath": "claim1.png",
+      "source": "local"
+    },
+    {
+      "title": "Claim damage 2",
+      "subtitle": "Side impact",
+      "body": "Side panel damage",
+      "imagePath": "claim2.png",
+      "source": "local"
+    },
+    {
+      "title": "Claim damage 3",
+      "subtitle": "Vehicle identity",
+      "body": "Damage photo for vehicle verification",
+      "imagePath": "claim3.png",
+      "source": "local"
+    },
+    {
+      "title": "Claim damage 4",
+      "subtitle": "Additional angle",
+      "body": "Supplementary damage image",
+      "imagePath": "claim4.png",
+      "source": "local"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "name": "marshmallow-claims-fraud-agent",
+  "version": "1.0.0",
+  "description": "Slack AI agent for Marshmallow insurance claims fraud profiling (Socket Mode)",
+  "main": "src/index.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node src/index.js",
+    "seed": "node scripts/seed_data.js",
+    "seed-fraud-claims": "node scripts/seed_fraud_claims_batch.js",
+    "post-claim-alerts": "node scripts/post_claim_alerts.js",
+    "create-jira-from-slack": "node scripts/create_jira_from_slack_channel.js",
+    "seed-confluence-runbooks": "node scripts/seed_confluence_runbooks.js",
+    "seed-and-alert-claims": "node scripts/seed_fraud_claims_batch.js && node scripts/post_claim_alerts.js",
+    "postinstall": "node scripts/seed_data.js",
+    "analyze": "node -e \"const {runAnalysis}=require('./src/engine/analyze');console.log(JSON.stringify(runAnalysis(process.argv[1]||'check claim CLM-2026-004781'),null,2))\"",
+    "tunnel": "ngrok http 3002"
+  },
+  "engines": {
+    "node": "20.x"
+  },
+  "dependencies": {
+    "@salesforce/cli": "^2.130.9",
+    "@slack/bolt": "^4.2.1",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.2"
+  }
+}
