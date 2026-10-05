@@ -1,0 +1,51 @@
+{
+  "initiative": "ClaimTrack — Digital Claims Progress",
+  "slackChannel": "#business-feedback",
+  "slackChannelId": "C0C6KCZ5MDZ",
+  "synthesisDate": "2026-09-28",
+  "feedbackItems": [
+    {
+      "id": "BF-2026-041",
+      "date": "2026-09-12",
+      "source": "Customer panel (Claims)",
+      "theme": "status_visibility",
+      "quote": "I submitted photos a week ago but the app still just says 'Under Review'. I don't know if you're waiting on me or the garage."
+    },
+    {
+      "id": "BF-2026-048",
+      "date": "2026-09-18",
+      "source": "Contact centre QA sample",
+      "theme": "repeat_contacts",
+      "quote": "47% of repeat calls on open motor claims ask only for status — no new information from the customer."
+    },
+    {
+      "id": "BF-2026-052",
+      "date": "2026-09-22",
+      "source": "Broker feedback — B2B2C",
+      "theme": "next_step",
+      "quote": "Brokers want a single line they can read to customers: what stage the claim is in and what happens next."
+    },
+    {
+      "id": "BF-2026-061",
+      "date": "2026-09-26",
+      "source": "App store reviews (aggregated)",
+      "theme": "resolution_eta",
+      "quote": "Reviews mention 'no idea when payout will happen' more often than complaint about outcome."
+    },
+    {
+      "id": "BF-2026-063",
+      "date": "2026-09-27",
+      "source": "Ops — SIU handoff",
+      "theme": "action_required",
+      "quote": "Customers miss requests for police ref or extra photos because we email once; app doesn't surface 'action needed'."
+    }
+  ],
+  "commonThemes": [
+    "status_visibility",
+    "next_step",
+    "action_required",
+    "resolution_eta",
+    "repeat_contacts"
+  ],
+  "duplicateProblemStatement": "Multiple feedback items describe the same gap: passive 'Under Review' with no stage, next action, or ETA — not separate feature requests."
+}

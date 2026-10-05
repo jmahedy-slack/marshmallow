@@ -1,0 +1,80 @@
+openapi: 3.0.3
+info:
+  title: Marshmallow ClaimTrack Progress API (draft)
+  version: 0.1.0
+  description: |
+    Customer-facing BFF sketch for ClaimTrack MVP. Not deployed.
+    Evidence for product spec challenge only.
+paths:
+  /v1/claims/{claimId}/progress:
+    get:
+      summary: Claim progress for policyholder
+      parameters:
+        - name: claimId
+          in: path
+          required: true
+          schema:
+            type: string
+            example: CLM-0138
+      responses:
+        "200":
+          description: Progress payload
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ClaimProgress"
+components:
+  schemas:
+    ClaimProgress:
+      type: object
+      required:
+        - claimId
+        - status
+        - stage
+        - lastUpdated
+      properties:
+        claimId:
+          type: string
+        status:
+          type: string
+          description: Customer-safe status label
+          example: Under Review
+        stage:
+          type: string
+          example: assessment
+        stageDescription:
+          type: string
+          example: We are assessing damage and repair options.
+        lastUpdated:
+          type: string
+          format: date-time
+        nextStep:
+          type: string
+        customerActionRequired:
+          type: boolean
+        outstandingActions:
+          type: array
+          items:
+            type: object
+            properties:
+              id: { type: string }
+              title: { type: string }
+              dueBy: { type: string, format: date-time }
+        estimatedResolution:
+          type: string
+          format: date
+          description: Optional; only when confidence medium+
+        assignedTeam:
+          type: string
+        importantMessages:
+          type: array
+          items:
+            type: object
+            properties:
+              at: { type: string, format: date-time }
+              summary: { type: string }
+        contactOptions:
+          type: object
+          properties:
+            inAppChat: { type: boolean }
+            phone: { type: string }
