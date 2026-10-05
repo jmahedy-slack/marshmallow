@@ -4,7 +4,7 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT"
 
-APP_NAME="${1:-marshmallow-claims-fraud-${USER,,}-demo}"
+APP_NAME="${1:-marshmallow-claims-fraud-demo}"
 
 heroku auth:whoami >/dev/null
 
