@@ -13,14 +13,14 @@
     "seed-confluence-runbooks": "node scripts/seed_confluence_runbooks.js",
     "seed-and-alert-claims": "node scripts/seed_fraud_claims_batch.js && node scripts/post_claim_alerts.js",
     "postinstall": "node scripts/seed_data.js",
+    "heroku-postbuild": "bash scripts/heroku-install-sf-cli.sh",
     "analyze": "node -e \"const {runAnalysis}=require('./src/engine/analyze');console.log(JSON.stringify(runAnalysis(process.argv[1]||'check claim CLM-2026-004781'),null,2))\"",
     "tunnel": "ngrok http 3002"
   },
   "engines": {
-    "node": "20.x"
+    "node": "22.x"
   },
   "dependencies": {
-    "@salesforce/cli": "^2.130.9",
     "@slack/bolt": "^4.2.1",
     "dotenv": "^16.4.5",
     "express": "^4.21.2"

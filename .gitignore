@@ -1,4 +1,5 @@
 node_modules/
+.heroku/sf-cli/
 .env
 .env.local
 *.log

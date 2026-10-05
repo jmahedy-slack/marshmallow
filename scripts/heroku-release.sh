@@ -2,7 +2,7 @@
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
-SF="${ROOT}/node_modules/.bin/sf"
+SF="$("$(dirname "$0")/heroku-sf-bin.sh")"
 
 if [[ -z "${SFDX_AUTH_URL:-}" ]]; then
   echo "heroku-release: SFDX_AUTH_URL not set — skipping Salesforce CLI login"

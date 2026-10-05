@@ -21,8 +21,11 @@ EOF
 )"
 fi
 
+HEROKU_TEAM="${HEROKU_TEAM:-mahedy-heroku}"
+HEROKU_REGION="${HEROKU_REGION:-eu}"
+
 if ! heroku apps:info -a "$APP_NAME" >/dev/null 2>&1; then
-  heroku create "$APP_NAME"
+  heroku create "$APP_NAME" --team "$HEROKU_TEAM" --region "$HEROKU_REGION"
 fi
 
 node scripts/heroku-sync-config.js --app="$APP_NAME"
